@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controlador.GestionRevista;
+
 public class vtnRevista extends JInternalFrame implements ActionListener{
 	
 	private JTextField nom;
@@ -29,7 +31,11 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 	private JTextField naci;
 	private JTextField nomAut;
 	
-	public  vtnRevista() {
+	private GestionRevista gr;
+	
+	public  vtnRevista(GestionRevista gr) {
+		super();
+		this.gr=gr;
 		initComponents();
 		// TODO Auto-generated constructor stub
 	}
@@ -80,7 +86,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "btnGuardar":
-			guardarArchivo();
+			guardarRevista();
 			break;
 
 		default:
@@ -90,9 +96,14 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 	}
 
 
-	public void guardarArchivo() {
+	public void guardarRevista() {
 		// TODO Auto-generated method stub
-		
+		String nombre = nom.getText();
+		System.out.println(nombre);
+		String idioma= idi.getText();
+		System.out.println(idioma);
+		String numPAg= num.getText();
+		System.out.println(numPAg);
 		
 		
 	}

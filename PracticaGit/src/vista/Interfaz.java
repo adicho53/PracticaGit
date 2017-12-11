@@ -10,17 +10,25 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import controlador.GestionRevista;
+
 public class Interfaz extends JFrame implements ActionListener {
 	
 	private JDesktopPane escritorio;
 	private JMenuBar barraMenu;
 	private JMenu mnu;
+	private GestionRevista dr;
 	
 	public Interfaz() {
+		dr=new GestionRevista();
 		initComponents();
 	}
 	
 	
+
+	
+
+
 
 	public void initComponents() {
 		// TODO Auto-generated method stub
@@ -97,7 +105,7 @@ public class Interfaz extends JFrame implements ActionListener {
 
 	private void llamarvtnRevista() {
 		// TODO Auto-generated method stub
-		vtnRevista vtR = new vtnRevista();
+		vtnRevista vtR = new vtnRevista(dr);
 		vtR.setVisible(true);
 		escritorio.add(vtR);
 		
