@@ -7,17 +7,24 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controlador.GestionRevista;
+import modelo.Revista;
 
 public class vtnRevista extends JInternalFrame implements ActionListener{
+	private GestionRevista gr;
+	private Revista revista;
 	
 	private JTextField nom;
 	private JTextField idi;
@@ -31,10 +38,11 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 	private JTextField naci;
 	private JTextField nomAut;
 	
-	private GestionRevista gr;
+	private String pathRevista="archivos/Revistas.txt";
+
 	
 	public  vtnRevista(GestionRevista gr) {
-		super();
+		
 		this.gr=gr;
 		initComponents();
 		// TODO Auto-generated constructor stub
@@ -86,7 +94,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "btnGuardar":
-			guardarRevista();
+			guardarDatosRevista();
 			break;
 
 		default:
@@ -96,16 +104,37 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 	}
 
 
-	public void guardarRevista() {
+	public void guardarDatosRevista() {
 		// TODO Auto-generated method stub
 		String nombre = nom.getText();
 		System.out.println(nombre);
 		String idioma= idi.getText();
 		System.out.println(idioma);
-		String numPAg= num.getText();
-		System.out.println(numPAg);
+		String numPag= num.getText();
+		System.out.println(numPag);
+		
+		gr.crearRevista(nombre, idioma, numPag);
+		JOptionPane.showMessageDialog(this, "Datos Guardados","Mensaje de informacion",
+				JOptionPane.INFORMATION_MESSAGE);
 		
 		
+	}
+	
+	public void crearArchivo(Revista re) throws IOException{
+		
+		guardarDatosRevista();
+		FileWriter file = new FileWriter(pathRevista,true);
+		
+		BufferedWriter out = new BufferedWriter(file);
+		String registro= "hola"+re.getNombre()+","+re.getIdioma()+","+re.getNumPag();
+		out.append(registro+"\n");
+		out.close();
+		file.close();
+		System.out.println(registro);
+		
+		
+		
+	
 	}
 
 }
