@@ -12,6 +12,10 @@ import javax.swing.JMenuItem;
 
 public class Interfaz extends JFrame implements ActionListener {
 	
+	private JDesktopPane escritorio;
+	private JMenuBar barraMenu;
+	private JMenu mnu;
+	
 	public Interfaz() {
 		initComponents();
 	}
@@ -21,18 +25,18 @@ public class Interfaz extends JFrame implements ActionListener {
 	public void initComponents() {
 		// TODO Auto-generated method stub
 		
-		setSize(400, 300);
+		setSize(600, 500);
 		setTitle("Gestion de Datos");
 		
 		
 		
 		getContentPane().setLayout(new BorderLayout());
-		JDesktopPane escritorio = new JDesktopPane();
+		 escritorio = new JDesktopPane();
 		getContentPane().add(escritorio, BorderLayout.CENTER);
 
 		// Seccion de ventanas
-		JMenuBar barraMenu = new JMenuBar();
-		JMenu mnu = new JMenu("Menu");
+		barraMenu = new JMenuBar();
+		mnu = new JMenu("Menu");
 
 		JMenuItem mnuRevista = new JMenuItem("Revista");
 		mnuRevista.addActionListener(this);
@@ -75,7 +79,28 @@ public class Interfaz extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		String comando= e.getActionCommand();
+		switch (comando) {
+		case "mnuRevista":
+			llamarvtnRevista();
+			break;
+
+		default:
+			break;
+		}
 		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	private void llamarvtnRevista() {
+		// TODO Auto-generated method stub
+		vtnRevista vtR = new vtnRevista();
+		vtR.setVisible(true);
+		escritorio.add(vtR);
+		
 		
 	}
 
