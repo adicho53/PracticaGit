@@ -7,6 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,8 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controlador.GestionRevista;
+import modelo.Revista;
 
 public class vtnRevista extends JInternalFrame implements ActionListener{
+	private GestionRevista gr;
+	private Revista revista;
 	
 	private JTextField nom;
 	private JTextField idi;
@@ -32,10 +38,11 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 	private JTextField naci;
 	private JTextField nomAut;
 	
-	private GestionRevista gr;
+	private String pathRevista="archivos/Revistas.txt";
+
 	
 	public  vtnRevista(GestionRevista gr) {
-		super();
+		
 		this.gr=gr;
 		initComponents();
 		// TODO Auto-generated constructor stub
@@ -87,7 +94,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "btnGuardar":
-			guardarRevista();
+			guardarDatosRevista();
 			break;
 
 		default:
@@ -97,12 +104,13 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 	}
 
 
-	public void guardarRevista() {
+	public void guardarDatosRevista() {
 		// TODO Auto-generated method stub
 		String nombre = nom.getText();
 		System.out.println(nombre);
 		String idioma= idi.getText();
 		System.out.println(idioma);
+
 		
 		try {
 			gr.agregarRevista(nombre, idioma);
@@ -112,8 +120,12 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		
 		
 		
 	}
+	
+	
 
 }

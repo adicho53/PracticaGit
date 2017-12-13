@@ -10,8 +10,10 @@ public class Main {
 		// TODO Auto-generated method stub
 		Interfaz inter = new Interfaz();
 		inter.setVisible(true);
+
 		//GestionRevista gre = new GestionRevista();
 		//gre.guardarRevista();
+
 	}
 
 }
