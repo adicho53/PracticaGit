@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -102,8 +103,15 @@ public class vtnRevista extends JInternalFrame implements ActionListener{
 		System.out.println(nombre);
 		String idioma= idi.getText();
 		System.out.println(idioma);
-		String numPAg= num.getText();
-		System.out.println(numPAg);
+		
+		try {
+			gr.agregarRevista(nombre, idioma);
+			JOptionPane.showMessageDialog(this, "Revista registrada", "Mensaje de información",
+					JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

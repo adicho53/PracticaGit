@@ -3,36 +3,41 @@ package modelo;
 public class Revista {
 	private String nombre;
 	private String idioma;
-	private String  numPag;
+	
 	public Revista() {
 		super();
 		
 	}
-	
-	public Revista(String nombre, String idioma, String numPag) {
+
+	public Revista(String nombre, String idioma) {
 		super();
 		this.nombre = nombre;
 		this.idioma = idioma;
-		this.numPag = numPag;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getIdioma() {
 		return idioma;
 	}
+
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-	public String getNumPag() {
-		return numPag;
+
+	@Override
+	public String toString() {
+		return "Revista [nombre=" + nombre + ", idioma=" + idioma + "]";
 	}
-	public void setNumPag(String numPag) {
-		this.numPag = numPag;
-	}
+	
+	
+	
 	
 	
 
