@@ -8,6 +8,11 @@ public class Canton {
 		this.nombreCanton = nombreCanton;
 		this.alcalde = alcalde;
 	}
+	
+	public Canton() {
+		super();
+		
+	}
 	public String getNombreCanton() {
 		return nombreCanton;
 	}

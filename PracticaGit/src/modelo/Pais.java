@@ -10,6 +10,10 @@ public class Pais {
 		this.presidente = presidente;
 		this.idioma = idioma;
 	}
+	public Pais() {
+		super();
+	
+	}
 	public String getNombreP() {
 		return nombreP;
 	}

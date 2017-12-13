@@ -1,0 +1,6 @@
+Pais: ssd, Idioma: sssss,Presidente: fds
+Provincia: ss, Numero de Habitantes: sss, Altura: s
+Canton: ss, Alcalde: ss
+========================================================
+
+

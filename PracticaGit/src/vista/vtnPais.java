@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 import controlador.GestionPais;
 import modelo.Pais;
 
-
 public class vtnPais extends JInternalFrame implements ActionListener {
 
 	private GestionPais gp;
@@ -27,19 +26,15 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 	private JTextField nombrePa;
 	private JTextField presi;
 	private JTextField idio;
-	
+
 	private JTextField nombrePro;
 	private JTextField numHab;
 	private JTextField altu;
-	
+
 	private JTextField nomCan;
 	private JTextField nomAlc;
 
-	
-
-	
-
-	public  vtnPais(GestionPais gp) {
+	public vtnPais(GestionPais gp) {
 
 		this.gp = gp;
 		initComponents();
@@ -64,10 +59,8 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 		datosPais.add(presi = new JTextField(8));
 		datosPais.add(new JLabel("Idioma: "));
 		datosPais.add(idio = new JTextField(8));
-		
-		
-		
-		JPanel datosProvincia= new JPanel();
+
+		JPanel datosProvincia = new JPanel();
 		datosProvincia.setBorder(BorderFactory.createTitledBorder("Datos de la Provincia"));
 		datosProvincia.setLayout(new GridLayout(3, 2));
 		datosProvincia.add(new JLabel("Nombre : "));
@@ -76,7 +69,7 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 		datosProvincia.add(numHab = new JTextField(8));
 		datosProvincia.add(new JLabel("Altura: "));
 		datosProvincia.add(altu = new JTextField(8));
-		
+
 		JPanel datosCanton = new JPanel();
 		datosCanton.setBorder(BorderFactory.createTitledBorder("Datos del Canton"));
 		datosCanton.setLayout(new GridLayout(3, 2));
@@ -84,7 +77,6 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 		datosCanton.add(nomCan = new JTextField(8));
 		datosCanton.add(new JLabel("Alcalde: "));
 		datosCanton.add(nomAlc = new JTextField(8));
-		
 
 		JPanel botones = new JPanel();
 		botones.setLayout(new FlowLayout());
@@ -98,7 +90,7 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 		Container cp = getContentPane();
 		cp.add(datosPais, BorderLayout.NORTH);
 		cp.add(datosProvincia, BorderLayout.CENTER);
-		cp.add(datosCanton,BorderLayout.SOUTH);
+		cp.add(datosCanton, BorderLayout.SOUTH);
 		cp.add(botones, BorderLayout.EAST);
 
 	}
@@ -109,7 +101,7 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "btnGuardar":
-			//guardarDatosRevista();
+			guardarDatosPais();
 			break;
 
 		default:
@@ -118,34 +110,34 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 
 	}
 
-	/*public void guardarDatosPais() {
+	public void guardarDatosPais() {
 		// TODO Auto-generated method stub
-		String nombre = nom.getText();
-		System.out.println(nombre);
-		String idioma = idi.getText();
-		System.out.println(idioma);
-		String titulo=titu.getText();
-		String pagInicio= pgi.getText();
-		String pagFinal=pgf.getText();
-		String nombreA=nomAut.getText();
-		String nacionalidad=naci.getText();
-		String fecNac=fnac.getText();
+		String nombreP=nombrePa.getText();
+		String idioma=idio.getText();
+		String presidente=presi.getText();
+		String nombreProvincia=nombrePro.getText();
+		String altura=altu.getText();
+		String numHabitantes=numHab.getText();
+		String nombreCanton=nomCan.getText();
+		String alcalde=nomAlc.getText();
 		
 
 		try {
-			if(gr.validadTextosVacios(nombre, idioma, titulo, pagInicio, pagFinal, nombreA, nacionalidad, fecNac)){
-			gr.agregarRevista(nombre, idioma, titulo, pagInicio, pagFinal, nombreA, nacionalidad, fecNac);
-			JOptionPane.showMessageDialog(this, "Revista registrada", "Mensaje de información",
+			if(gp.validadTextosVacios(nombreP, idioma, presidente, nombreProvincia, altura, numHabitantes, nombreCanton, alcalde)){
+			gp.agregarPais(nombreP, idioma, presidente, nombreProvincia, altura, numHabitantes, nombreCanton, alcalde);
+			JOptionPane.showMessageDialog(this, "Pais registrada", "Mensaje de información",
 					JOptionPane.INFORMATION_MESSAGE);
 			
-			nom.setText("");
-			idi.setText("");
-			titu.setText("");
-			pgi.setText("");
-			pgf.setText("");
-			nomAut.setText("");
-			naci.setText("");
-			fnac.setText("");}
+			  nombrePa.setText("");
+			 presi.setText("");
+			 idio.setText("");
+			
+			nombrePro.setText("");
+			numHab.setText("");
+			altu.setText("");
+			
+			nomCan.setText("");
+			nomAlc.setText("");}
 			else{
 				JOptionPane.showMessageDialog(this, "Algunos campos de texto se encuentran vacios", "Mensaje de información",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -155,11 +147,12 @@ public class vtnPais extends JInternalFrame implements ActionListener {
 			e.printStackTrace();
 		}
 
-	}
+	
+	
+		
 	
 	
 	
-	
-	
-*/
+		}
 }
+
