@@ -10,6 +10,11 @@ public class Articulo {
 		this.pagInicio = pagInicio;
 		this.pagFinal = pagFinal;
 	}
+	
+	public Articulo() {
+		super();
+		
+	}
 	public String getTitulo() {
 		return titulo;
 	}

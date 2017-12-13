@@ -8,45 +8,80 @@ import java.io.IOException;
 
 import java.util.List;
 
-
+import modelo.Articulo;
+import modelo.Autor;
 import modelo.Revista;
 
-
 public class GestionRevista {
-	
-	//private List<Articulo> articulos;
-	//private List<Autor> autores;
-	
+
 	private List<Revista> revistas;
-	private String pathRevista="archivos/Revistas.txt";
-	
-	
-	public GestionRevista(){
+	private List<Articulo> articulos;
+	private List<Autor> autores;
+	private String pathRevista = "archivos/Revistas.txt";
+
+	public GestionRevista() {
 
 		revistas = new ArrayList<Revista>();
-		//this.revista=revista;
-		
+		articulos = new ArrayList<Articulo>();
+		autores = new ArrayList<Autor>();
+
 	}
-	
-	public void agregarRevista(String nombre, String idioma) throws Exception{
-		
+
+	public void agregarRevista(String nombre, String idioma, String titulo, String pagInicio, String pagFinal,
+			String nombreA, String nacionalidad, String fecNac) throws Exception {
+
 		Revista revis = new Revista();
 		revis.setNombre(nombre);
 		revis.setIdioma(idioma);
-		
-		
-	
-		FileWriter file = new FileWriter(pathRevista,true);
-		
+		revistas.add(revis);
+
+		Articulo art = new Articulo();
+		art.setTitulo(titulo);
+		art.setPagInicio(pagInicio);
+		art.setPagFinal(pagFinal);
+		articulos.add(art);
+
+		Autor aut = new Autor();
+		aut.setNombre(nombreA);
+		aut.setNacionalidad(nacionalidad);
+		aut.setFecNac(fecNac);
+
+		FileWriter file = new FileWriter(pathRevista, true);
+
 		BufferedWriter out = new BufferedWriter(file);
-		String registro= "hola "+revis.getNombre()+","+revis.getIdioma();
-		out.append(registro+"\n");
+		String registro = "Revista: " + revis.getNombre() + ", Idioma: " + revis.getIdioma() + "\n" + "Articulo: "
+				+ art.getTitulo() + ", Inicio del articulo en la pagina: " + art.getPagInicio()
+				+ ", Fin del articulo en la pagina: " + art.getPagFinal() + "\n" + "Autor: " + aut.getNombreA()
+				+ ", Nacionalidad: " + aut.getNacionalidad() + ", Fecha de nacimiento: " + aut.getFecNac() + "\n"
+				+ "========================================================" + "\n" + "\n";
+		out.append(registro + "\n");
 		out.close();
 		file.close();
 		System.out.println(registro);
-		
-		
-		
+
+	}
+
+	public boolean validadTextosVacios(String nombre, String idioma, String titulo, String pagInicio, String pagFinal,
+			String nombreA, String nacionalidad, String fecNac) {
+		if (nombre.equals("") || idioma.equals("") || titulo.equals("") || pagInicio.equals("") || pagFinal.equals("")
+				|| nombreA.equals("") || nacionalidad.equals("") || fecNac.equals("")) {
+			return false;
+		}
+
+		return true;
+
+	}
+
+	public List<Revista> getRevistas() {
+		return revistas;
+	}
+
+	public List<Articulo> getArticulos() {
+		return articulos;
+	}
+
+	public List<Autor> getAutores() {
+		return autores;
 	}
 
 }

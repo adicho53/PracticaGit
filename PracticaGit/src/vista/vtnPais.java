@@ -3,13 +3,9 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,27 +15,33 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controlador.GestionRevista;
-import modelo.Revista;
+import controlador.GestionPais;
+import modelo.Pais;
 
-public class vtnRevista extends JInternalFrame implements ActionListener {
-	private GestionRevista gr;
-	private Revista revista;
 
-	private JTextField nom;
-	private JTextField idi;
+public class vtnPais extends JInternalFrame implements ActionListener {
 
-	private JTextField pgf;
-	private JTextField pgi;
-	private JTextField titu;
+	private GestionPais gp;
+	private Pais pais;
 
-	private JTextField fnac;
-	private JTextField naci;
-	private JTextField nomAut;
+	private JTextField nombrePa;
+	private JTextField presi;
+	private JTextField idio;
+	
+	private JTextField nombrePro;
+	private JTextField numHab;
+	private JTextField altu;
+	
+	private JTextField nomCan;
+	private JTextField nomAlc;
 
-	public vtnRevista(GestionRevista gr) {
+	
 
-		this.gr = gr;
+	
+
+	public  vtnPais(GestionPais gp) {
+
+		this.gp = gp;
 		initComponents();
 		// TODO Auto-generated constructor stub
 	}
@@ -47,39 +49,42 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 	private void initComponents() {
 		// TODO Auto-generated method stub
 		setSize(500, 400);
-		setTitle("Gestion Revista");
+		setTitle("Gestion Pais");
 		setClosable(true);
 		setResizable(true);
 
 		getContentPane().setLayout(new FlowLayout());
 
-		JPanel datosRevista = new JPanel();
-		datosRevista.setBorder(BorderFactory.createTitledBorder("Datos de la Revista"));
-		datosRevista.setLayout(new GridLayout(3, 2));
-		datosRevista.add(new JLabel("Nombre de la Revista: "));
-		datosRevista.add(nom = new JTextField(8));
-		datosRevista.add(new JLabel("Idioma de la Revista: "));
-		datosRevista.add(idi = new JTextField(8));
+		JPanel datosPais = new JPanel();
+		datosPais.setBorder(BorderFactory.createTitledBorder("Datos del Pais"));
+		datosPais.setLayout(new GridLayout(3, 2));
+		datosPais.add(new JLabel("Nombre del Pais: "));
+		datosPais.add(nombrePa = new JTextField(8));
+		datosPais.add(new JLabel("Nombre del Presidente: "));
+		datosPais.add(presi = new JTextField(8));
+		datosPais.add(new JLabel("Idioma: "));
+		datosPais.add(idio = new JTextField(8));
 		
-		JPanel datosArticulo = new JPanel();
-		datosArticulo.setBorder(BorderFactory.createTitledBorder("Datos del articulo"));
-		datosArticulo.setLayout(new GridLayout(3, 2));
-		datosArticulo.add(new JLabel("Titulo: "));
-		datosArticulo.add(titu = new JTextField(8));
-		datosArticulo.add(new JLabel("Pagina de inicio: "));
-		datosArticulo.add(pgi = new JTextField(8));
-		datosArticulo.add(new JLabel("Pagina final: "));
-		datosArticulo.add(pgf = new JTextField(8));
 		
-		JPanel datosAutor = new JPanel();
-		datosAutor.setBorder(BorderFactory.createTitledBorder("Datos del Autor"));
-		datosAutor.setLayout(new GridLayout(3, 2));
-		datosAutor.add(new JLabel("Nombre: "));
-		datosAutor.add(nomAut = new JTextField(8));
-		datosAutor.add(new JLabel("Naconalidad: "));
-		datosAutor.add(naci = new JTextField(8));
-		datosAutor.add(new JLabel("Fecha de Nacimiento: "));
-		datosAutor.add(fnac = new JTextField(8));
+		
+		JPanel datosProvincia= new JPanel();
+		datosProvincia.setBorder(BorderFactory.createTitledBorder("Datos de la Provincia"));
+		datosProvincia.setLayout(new GridLayout(3, 2));
+		datosProvincia.add(new JLabel("Nombre : "));
+		datosProvincia.add(nombrePro = new JTextField(8));
+		datosProvincia.add(new JLabel("Numero de habitantes: "));
+		datosProvincia.add(numHab = new JTextField(8));
+		datosProvincia.add(new JLabel("Altura: "));
+		datosProvincia.add(altu = new JTextField(8));
+		
+		JPanel datosCanton = new JPanel();
+		datosCanton.setBorder(BorderFactory.createTitledBorder("Datos del Canton"));
+		datosCanton.setLayout(new GridLayout(3, 2));
+		datosCanton.add(new JLabel("Nombre: "));
+		datosCanton.add(nomCan = new JTextField(8));
+		datosCanton.add(new JLabel("Alcalde: "));
+		datosCanton.add(nomAlc = new JTextField(8));
+		
 
 		JPanel botones = new JPanel();
 		botones.setLayout(new FlowLayout());
@@ -91,9 +96,9 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		// cargadatos.add(new constraints);
 
 		Container cp = getContentPane();
-		cp.add(datosRevista, BorderLayout.NORTH);
-		cp.add(datosArticulo, BorderLayout.CENTER);
-		cp.add(datosAutor,BorderLayout.SOUTH);
+		cp.add(datosPais, BorderLayout.NORTH);
+		cp.add(datosProvincia, BorderLayout.CENTER);
+		cp.add(datosCanton,BorderLayout.SOUTH);
 		cp.add(botones, BorderLayout.EAST);
 
 	}
@@ -104,7 +109,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		String comando = e.getActionCommand();
 		switch (comando) {
 		case "btnGuardar":
-			guardarDatosRevista();
+			//guardarDatosRevista();
 			break;
 
 		default:
@@ -113,7 +118,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 
 	}
 
-	public void guardarDatosRevista() {
+	/*public void guardarDatosPais() {
 		// TODO Auto-generated method stub
 		String nombre = nom.getText();
 		System.out.println(nombre);
@@ -151,5 +156,10 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		}
 
 	}
-
+	
+	
+	
+	
+	
+*/
 }
