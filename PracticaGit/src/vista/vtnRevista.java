@@ -60,7 +60,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		datosRevista.add(nom = new JTextField(8));
 		datosRevista.add(new JLabel("Idioma de la Revista: "));
 		datosRevista.add(idi = new JTextField(8));
-		
+
 		JPanel datosArticulo = new JPanel();
 		datosArticulo.setBorder(BorderFactory.createTitledBorder("Datos del articulo"));
 		datosArticulo.setLayout(new GridLayout(3, 2));
@@ -70,7 +70,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		datosArticulo.add(pgi = new JTextField(8));
 		datosArticulo.add(new JLabel("Pagina final: "));
 		datosArticulo.add(pgf = new JTextField(8));
-		
+
 		JPanel datosAutor = new JPanel();
 		datosAutor.setBorder(BorderFactory.createTitledBorder("Datos del Autor"));
 		datosAutor.setLayout(new GridLayout(3, 2));
@@ -93,7 +93,7 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		Container cp = getContentPane();
 		cp.add(datosRevista, BorderLayout.NORTH);
 		cp.add(datosArticulo, BorderLayout.CENTER);
-		cp.add(datosAutor,BorderLayout.SOUTH);
+		cp.add(datosAutor, BorderLayout.SOUTH);
 		cp.add(botones, BorderLayout.EAST);
 
 	}
@@ -119,32 +119,36 @@ public class vtnRevista extends JInternalFrame implements ActionListener {
 		System.out.println(nombre);
 		String idioma = idi.getText();
 		System.out.println(idioma);
-		String titulo=titu.getText();
-		String pagInicio= pgi.getText();
-		String pagFinal=pgf.getText();
-		String nombreA=nomAut.getText();
-		String nacionalidad=naci.getText();
-		String fecNac=fnac.getText();
-		
+		String titulo = titu.getText();
+		String pagInicio = pgi.getText();
+		String pagFinal = pgf.getText();
+		String nombreA = nomAut.getText();
+		String nacionalidad = naci.getText();
+		String fecNac = fnac.getText();
 
 		try {
-			if(gr.validadTextosVacios(nombre, idioma, titulo, pagInicio, pagFinal, nombreA, nacionalidad, fecNac)){
-			gr.agregarRevista(nombre, idioma, titulo, pagInicio, pagFinal, nombreA, nacionalidad, fecNac);
-			JOptionPane.showMessageDialog(this, "Revista registrada", "Mensaje de información",
-					JOptionPane.INFORMATION_MESSAGE);
-			
-			nom.setText("");
-			idi.setText("");
-			titu.setText("");
-			pgi.setText("");
-			pgf.setText("");
-			nomAut.setText("");
-			naci.setText("");
-			fnac.setText("");}
-			else{
-				JOptionPane.showMessageDialog(this, "Algunos campos de texto se encuentran vacios", "Mensaje de información",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
+			if (gr.validadTextosVacios(nombre, idioma, titulo, pagInicio, pagFinal, nombreA, nacionalidad, fecNac)) {
+				if (gr.validarRepeticion(nombre, titulo, nombreA)) {
+					gr.agregarRevista(nombre, idioma, titulo, pagInicio, pagFinal, nombreA, nacionalidad, fecNac);
+					JOptionPane.showMessageDialog(this, "Revista registrada", "Mensaje de información",
+							JOptionPane.INFORMATION_MESSAGE);
+
+					nom.setText("");
+					idi.setText("");
+					titu.setText("");
+					pgi.setText("");
+					pgf.setText("");
+					nomAut.setText("");
+					naci.setText("");
+					fnac.setText("");
+				} else{
+					JOptionPane.showMessageDialog(this, "Datos repetidos ",
+							"Mensaje de información", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}else {
+					JOptionPane.showMessageDialog(this, "Algunos campos de texto se encuentran vacios",
+							"Mensaje de información", JOptionPane.INFORMATION_MESSAGE);
+				}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

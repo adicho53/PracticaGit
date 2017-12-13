@@ -60,6 +60,27 @@ public class GestionRevista {
 		System.out.println(registro);
 
 	}
+	
+	public boolean validarRepeticion(String nombre,  String titulo,
+			String nombreA) throws Exception{
+		
+		
+		int n = 1;
+		if (autores.size() > 0) {
+			for (int i = 0; i < autores.size(); i++) {
+				if (nombre.equals(revistas.get(i).getNombre()) && titulo.equals(articulos.get(i).getTitulo())
+						&& nombreA.equals(autores.get(i).getNombreA())) {
+					n++;
+				}
+			}
+			if (n > 1) {
+				throw new Exception("El articulo ya se encuentra registrando en esta revista con el mismo autor");
+			}
+		}
+		return false;
+				
+		
+	}
 
 	public boolean validadTextosVacios(String nombre, String idioma, String titulo, String pagInicio, String pagFinal,
 			String nombreA, String nacionalidad, String fecNac) {

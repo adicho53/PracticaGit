@@ -64,6 +64,21 @@ public class GestionPais {
 		}
 
 	}
+	/*public boolean validarPais(String nombreP,String presidente) throws Exception {
+		int n = 1;
+		if (autores.size() > 0) {
+			for (int i = 0; i < autores.size(); i++) {
+				if (nombre.equals(autores.get(i).getNombre()) && apellido.equals(autores.get(i).getApellido())
+						&& nacionalidad.equals(autores.get(i).getNacionalidad())) {
+					n++;
+				}
+			}
+			if (n > 1) {
+				throw new Exception("El autor ya se encuentra inscrito");
+			}
+		}
+		return true;
+	}*/
 
 	public boolean validadTextosVacios(String nombreP, String idioma, String presidente, String nombreProvincia,
 			String altura, String numHabitantes, String nombreCanton, String alcalde) {
